@@ -12,7 +12,7 @@ mongoose.connect("mongodb://localhost:27017/expense-tracker", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-
+ 
 // Define the Expense model
 const Expense = mongoose.model("Expense", {
     name: String,
@@ -36,6 +36,19 @@ app.get('/', async (req, res) => {
         res.status(500).send('Server Error')
     }
 })
+
+app.post('/filter', async (req, res) => {
+    const { category } = req.body;
+    try {
+      const expenses = await Expense.find({ category });
+      res.render('index', { expenses });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+ 
 
 app.get("/expenses/new", (req, res) => {
     res.render("new");
@@ -110,6 +123,6 @@ app.post("/expenses/:id/delete", async (req, res) => {
 
 
 // Start the server
-app.listen(4000, () => {
+app.listen(3000, () => {
     console.log("Server is listening on port 4000");
 });
