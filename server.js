@@ -48,7 +48,25 @@ app.post('/filter', async (req, res) => {
     }
   });
   
- 
+  app.post('/filter/date', async (req, res) => {
+    const { month, year } = req.body;
+  
+    if (!month || !year) {
+      return res.redirect('/');
+    }
+  
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0);
+  
+    try {
+      const expenses = await Expense.find({ date: { $gte: startDate, $lte: endDate } });
+      res.render('index', { expenses });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+   
 
 app.get("/expenses/new", (req, res) => {
     res.render("new");
