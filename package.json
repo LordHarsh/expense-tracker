@@ -2,9 +2,9 @@
   "name": "expense-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon server.js",
     "test": "nodemon server.js"
   },
   "keywords": [],

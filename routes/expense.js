@@ -4,23 +4,7 @@ const router = express.Router();
 const Expense = require("../models/expense");
 const { log } = require("console");
 
-// Get all expenses
-app.get('/', async (req, res) => {
-  try {
-    const expenses = await Expense.find({})
-    res.render('index', { expenses })
-  } catch (err) {
-    console.error(err)
-    res.status(500).send('Server Error')
-  }
-})
 
-
-// Get the form for creating a new expense
-router.get("/new", (req, res) => {
-  console.log('work')
-  res.render("new");
-});
 
 // Create a new expense
 router.post("/", async (req, res) => {

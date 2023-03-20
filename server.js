@@ -38,7 +38,6 @@ app.get('/', async (req, res) => {
 })
 
 app.get("/expenses/new", (req, res) => {
-    console.log('work')
     res.render("new");
 });
 
@@ -58,43 +57,57 @@ app.post("/expenses", async (req, res) => {
     try {
         const expense = new Expense({ name, amount, date, category });
         await expense.save();
-        const expenses = await Expense.find();
-        res.render('index', { expenses })
+        res.redirect('/')
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
 });
 
-app.put("/expenses/:id", async (req, res) => {
+// Get the form for editing an existing expense
+app.get("/expenses/:id/edit", async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const expense = await Expense.findById(id);
+      res.render("edit", { expense });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    }
+  });  
+  
+app.post("/expenses/:id/edit", async (req, res) => {
     const { id } = req.params;
     const { name, amount, date, category } = req.body;
 
     try {
-        const expense = await Expense.findByIdAndUpdate(id, {
+        const expense = await Expense.findByIdAndUpdate(id, { 
             name,
             amount,
             date,
             category,
         });
-        res.send(expense);
+        res.redirect('/')
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
 });
 
-app.delete("/expenses/:id", async (req, res) => {
+app.post("/expenses/:id/delete", async (req, res) => {
     const { id } = req.params;
 
     try {
         const expense = await Expense.findByIdAndDelete(id);
-        res.send(expense);
+        res.redirect('/')
     } catch (err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
-});
+}); 
+
+
 
 // Start the server
 app.listen(4000, () => {

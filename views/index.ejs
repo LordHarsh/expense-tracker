@@ -26,8 +26,10 @@
               <td><%= expense.date.toDateString() %></td>
               <td><%= expense.category %></td>
               <td>
-                <a href="/expenses/<%= expense._id %>/edit">Edit</a>
-                <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST">
+                <form action="/expenses/<%= expense._id %>/edit" method="GET">
+                  <button type="submit">Edit</button>
+                </form>
+                <form action="/expenses/<%= expense._id %>/delete" method="POST">
                   <button type="submit">Delete</button>
                 </form>
               </td>

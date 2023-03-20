@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Edit Expense</title>
-  </head>
-  <body>
-    <h1>Edit Expense</h1>
-    <form action="/expenses/<%= expense._id %>?_method=PUT" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" value="<%= expense.name %>" required>
-      <br>
-      <label for="amount">Amount:</label>
-      <input type="number" name="amount" id="amount" value="<%= expense.amount %>" required>
-      <br>
-      <label for="date">Date:</label>
-      <input type="date" name="date" id="date" value="<%= expense.date.toISOString().substring(0, 10) %>" required>
-      <br>
-      <label for="category">Category:</label>
-      <input type="text" name="category" id="category" value="<%= expense.category %>" required>
-      <br>
-      <button type="submit">Update</button>
-      <a href="/">Cancel</a>
-    </form>
-  </body>
+
+<head>
+  <title>Edit Expense</title>
+</head>
+
+<body>
+  <h1>Edit Expense</h1>
+  <form action="/expenses/<%= expense._id %>/edit" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= expense.name %>" required>
+    <br>
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" id="amount" value="<%= expense.amount %>" required>
+    <br>
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date" value="<%= expense.date.toISOString().substring(0, 10) %>" required>
+    <br>
+    <label for="category">Category:</label>
+    <select name="category" id="category" required>
+      <option value="">Select a category</option>
+      <option value="Food" <% if (expense.category === 'Food') { %>selected<% } %>>Food</option>
+      <option value="Transportation" <% if (expense.category === 'Transportation') { %>selected<% } %>>Transportation</option>
+      <option value="Entertainment" <% if (expense.category === 'Entertainment') { %>selected<% } %>>Entertainment</option>
+      <option value="Shopping" <% if (expense.category === 'Shopping') { %>selected<% } %>>Shopping</option>
+      <option value="Utilities" <% if (expense.category === 'Utilities') { %>selected<% } %>>Utilities</option>
+      <option value="Other" <% if (expense.category === 'Other') { %>selected<% } %>>Other</option>
+    </select>
+
+    <br>
+    <button type="submit">Update</button>
+    <a href="/">Cancel</a>
+  </form>
+</body>
+
 </html>
