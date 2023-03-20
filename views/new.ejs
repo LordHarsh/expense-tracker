@@ -2,32 +2,44 @@
 <html>
   <head>
     <title>New Expense</title>
+    <!-- Add Bootstrap CSS stylesheet link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
-    <h1>New Expense</h1>
-    <form action="/expenses" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name" required>
-      <br>
-      <label for="amount">Amount:</label>
-      <input type="number" name="amount" id="amount" required>
-      <br>
-      <label for="date">Date:</label>
-      <input type="date" name="date" id="date" required>
-      <br>
-      <label for="category">Category:</label>
-      <select name="category" id="category" required>
-        <option value="">Select a category</option>
-        <option value="Food">Food</option>
-        <option value="Transportation">Transportation</option>
-        <option value="Entertainment">Entertainment</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Utilities">Utilities</option>
-        <option value="Other">Other</option>
-      </select>
-      <br>
-      <button type="submit">Add Expense</button>
-      <a href="/">Cancel</a>
-    </form>
+    <div class="container">
+      <h1>New Expense</h1>
+      <form action="/expenses" method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="number" class="form-control" name="amount" id="amount" required>
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" class="form-control" name="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select class="form-control" name="category" id="category" required>
+            <option value="">Select a category</option>
+            <option value="Food">Food</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+    <!-- Add Bootstrap JS script links here -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
