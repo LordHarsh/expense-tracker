@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Expense Tracker</h1>
+    <div class="row mt-3">
+      <div class="col">
+        <form action="/expenses" method="POST">
+          <div class="form-group">
+            <label for="name">Expense Name</label>
+            <input type="text" name="name" id="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="amount">Expense Amount</label>
+            <input type="number" name="amount" id="amount" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="date">Expense Date</label>
+            <input type="date" name="date" id="date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="category">Expense Category</label>
+            <select name="category" id="category" class="form-control">
+              <option value="">Select a category</option>
+              <option value="food">Food</option>
+              <option value="transportation">Transportation</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="utilities">Utilities</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Expense</button>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Expense Name</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% expenses.forEach((expense) => { %>
+              <tr>
+                <td><%= expense.name %></td>
+                <td><%= expense.amount %></td>
+                <td><%= expense.date.toDateString() %></td>
+                <td><%= expense.category %></td>
+                <td>
+                  <a href="/expenses/<%= expense._id %>/edit" class="btn btn-primary btn-sm mr-2">Edit</a>
+                  <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST" style="display: inline-block;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
