@@ -14,7 +14,13 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
+const port = process.env.PORT || 5000
+
 const client = new mongodb.MongoClient(mongoUri || 'mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true });
+ 
+
+// middleware for parsing incoming request bodies
+app.use(express.urlencoded({ extended: true }));
 
 client.connect((err) => {
     if (err) {
@@ -77,7 +83,7 @@ app.post('/expenses', [
   });
 
 
-const port = process.env.PORT || 5000
-app.listen(port, () => {
-    console.log('Server is listening on port 5000...');
-})
+
+// app.listen(port, () => {
+//     console.log('Server is listening on port 5000...');
+// })

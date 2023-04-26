@@ -1,0 +1,88 @@
+/* Define global styles */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  /* Define styles for header */
+  header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  /* Define styles for main content area */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Define styles for expense list */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  /* Define styles for form inputs */
+  form label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  form input, form button {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  form a {
+    display: inline-block;
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* Define styles for error messages */
+  .error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  

@@ -1,34 +1,89 @@
-const { MongoClient } = require("mongodb");
+// Import necessary libraries and modules
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-// Replace the uri string with your connection string.
-const uri = 'mongodb://localhost:27017';
+// Initialize the Express application
+const app = express();
 
-const client = new MongoClient(uri);
-client.connect((err) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-    console.log('Connected to MongoDB');
-
-    // start the server
-    app.listen(port, () => {
-        console.log(`Server started on port ${port}`);
-    });
+// Set up the MongoDB connection
+mongoose.connect("mongodb://localhost:27017/expense-tracker", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
-async function run() {
+
+// Define the Expense model
+const Expense = mongoose.model("Expense", {
+  name: String,
+  amount: Number,
+  date: Date,
+  category: String,
+});
+
+// Configure the middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+// Define the routes
+// app.get("/", (req, res) => {
+//   res.render("index.ejs");
+// });
+
+app.get("/expenses", async (req, res) => {
   try {
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
-
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
-
-    console.log(movie);
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    const expenses = await Expense.find();
+    res.send(expenses);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
   }
-}
-run().catch(console.dir);
+});
+
+app.post("/expenses", async (req, res) => {
+  const { name, amount, date, category } = req.body;
+
+  try {
+    const expense = new Expense({ name, amount, date, category });
+    await expense.save();
+    res.send(expense);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.put("/expenses/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, amount, date, category } = req.body;
+
+  try {
+    const expense = await Expense.findByIdAndUpdate(id, {
+      name,
+      amount,
+      date,
+      category,
+    });
+    res.send(expense);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.delete("/expenses/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const expense = await Expense.findByIdAndDelete(id);
+    res.send(expense);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});

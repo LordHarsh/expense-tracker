@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expense Tracker</title>
+  </head>
+  <body>
+    <h1>Expense Tracker</h1>
+    <a href="/expenses/new">Add Expense</a>
+    <hr />
+    <% if (expenses.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% expenses.forEach(expense => { %>
+            <tr>
+              <td><%= expense.name %></td>
+              <td><%= expense.amount %></td>
+              <td><%= expense.date.toDateString() %></td>
+              <td><%= expense.category %></td>
+              <td>
+                <a href="/expenses/<%= expense._id %>/edit">Edit</a>
+                <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No expenses found.</p>
+    <% } %>
+  </body>
+</html>
