@@ -15,7 +15,7 @@ Expense Tracker is a web application for tracking personal expenses.
 
 ## Technologies Used
 
-- !(https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+- ![NODE.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 - Express.js
 - Mongoose
 - Bootstrap
