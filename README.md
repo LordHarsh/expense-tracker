@@ -13,8 +13,9 @@ Expense Tracker is a web application for tracking personal expenses.
 
 - Node.js
 - Express.js
-- MongoDB
+- Mongoose
 - Bootstrap
+- EJS
 
 ## Installation
 
@@ -33,7 +34,7 @@ Expense Tracker is a web application for tracking personal expenses.
 
 ## Credits
 
-This application was created by [Your Name].
+This application was created by [Lord Harsh](https://github.com/LordHarsh) (Harsh Banka).
 
 ## License
 
