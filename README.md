@@ -30,7 +30,7 @@ Expense Tracker is a web application for tracking personal expenses.
 ## Usage
 
 1. Open a web browser and go to `http://localhost:3000`
-2. View all expenses by clicking on the "View All Expenses" button
+2. View all expenses by clicking on the home page
 3. Add a new expense by clicking on the "Add New Expense" button and filling out the form
 4. Edit an existing expense by clicking on the "Edit" button next to the expense and updating the form
 5. Delete an existing expense by clicking on the "Delete" button next to the expense
