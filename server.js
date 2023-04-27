@@ -142,5 +142,5 @@ app.post("/expenses/:id/delete", async (req, res) => {
 
 // Start the server
 app.listen(3000, () => {
-    console.log("Server is listening on port 4000");
+    console.log("Server is listening on port 3000");
 });
