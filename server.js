@@ -7,7 +7,7 @@ require('dotenv').config();
 // Initialize the Express application
 const app = express();
 app.set('view engine', 'ejs');
-
+app.set('views', __dirname + '/views');
 const mongoURI = process.env.MONGODB_URI;
 const port = process.env.PORT || 3000;
 
