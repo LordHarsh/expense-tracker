@@ -8,8 +8,8 @@ require('dotenv').config();
 const app = express();
 app.set('view engine', 'ejs');
 
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/expense-tracker";
-const port = process.env.PORT || 5000;
+const mongoURI = process.env.MONGODB_URI;
+const port = process.env.PORT || 3000;
 
 // Set up the MongoDB connection
 mongoose.connect(mongoURI, {
