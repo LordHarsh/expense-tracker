@@ -34,10 +34,10 @@ app.use(express.static("public"));
 app.get('/', async (req, res) => {
     try {
         const expenses = await Expense.find({})
-        res.render('index', { expenses })
+        return res.render('index', { expenses })
     } catch (err) {
         console.error(err)
-        res.status(500).send('Server Error')
+        return res.status(500).send('Server Error')
     }
 })
 
